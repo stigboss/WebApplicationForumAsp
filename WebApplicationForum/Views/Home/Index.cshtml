@@ -1,0 +1,14 @@
+﻿@{ 
+    ViewBag.Title = "Home Page";
+}
+
+<div id="auth_block" style="margin-top:25px;position:fixed;background-color:#202020;color:#999999;width:1200px;padding:5px;"  >
+    <form method="post">
+        <span style="margin:5px;">Login: </span><input name="user_log" placeholder="Nickname"  style="margin:5px;" required />
+        <span style="margin:5px;">Password: </span><input type="password" name="user_pass" placeholder="Password"  style="margin:5px;" required />
+        <input type="submit" value="Login" style="margin:5px;" />
+        <input type="button" value="Registration" onclick="window.location='/User/Index'" style="margin:5px;" />
+        <input type="button" value="Forget Password"  style="margin:5px;"/>
+    </form>
+</div>
+<hr style="margin-top:70px"/>

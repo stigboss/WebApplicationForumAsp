@@ -1,0 +1,2 @@
+LINQ - Language Integrated Queries
+LINQ - языковые конструкции по обработке списков и массивов

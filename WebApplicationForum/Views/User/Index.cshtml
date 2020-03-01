@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>Users</h2>
+
+<ul>
+    @foreach(var u in ViewBag.users)
+    {
+        <li>
+            <h3>@u.RealName 
+                <span style="color:red">@u.Nickname</span> 
+                <span style="color:lightgray">@u.RegisterDate</span>
+            </h3> 
+        </li>
+    }
+</ul>
+<form method="POST" action="~/User/Add">
+    <span class="forminput">Nickname: </span><input type="text" name="Nickname" /><br />
+    <span class="forminput">RealName: </span><input type="text" name="RealName" required /><br />
+    <span class="forminput">Password: </span><input type="password" name="PassHash" required /><br />
+    <span class="forminput">Confirm Password: </span><input type="password" name="RePassword" required /><br />
+    <input type="submit" value="Check&Send" id="sendUserForm"/>
+</form>
+
+@Scripts.Render("~/bundles/valScript")

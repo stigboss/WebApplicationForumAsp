@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebApplicationForum.Models
 {
-    public class UserService
+    public static class UserService
     {
-        public Forum forum = new Forum();
-        public User GetUserByLogPas(String login, String pass)
+        public static Forum forum = new Forum();
+        public static User GetUserByLogPas(String login, String pass)
         {
             if (string.IsNullOrEmpty(login) && string.IsNullOrEmpty(pass))
             {
@@ -26,8 +26,15 @@ namespace WebApplicationForum.Models
             {
                 return u;
             }
+            return null;
             
         }
+
+        public static User GetUserByID(int id)
+        {
+            return forum.users.Find(id);
+        }
+
     }
 
 

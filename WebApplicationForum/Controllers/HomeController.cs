@@ -11,7 +11,21 @@ namespace WebApplicationForum.Controllers
         public Models.Forum forum = new Models.Forum();
         public ActionResult Index()
         {
-            
+
+            if (Convert.ToDateTime(Session["userDtLife"]).AddHours(2) >= DateTime.Now)
+            {
+                Session["userId"] = null;
+                ViewBag.User = null;
+                Response.Redirect("/");
+            }
+
+            if (Request.Params["logout"] != null)
+            {
+                Session["userId"] = null;
+                ViewBag.User = null;
+                Response.Redirect("/");
+            }
+
             int? userCnt = forum.users.Count();
             if (userCnt==0)
             {
@@ -172,6 +186,27 @@ namespace WebApplicationForum.Controllers
             //{
             //    a = res.name.GetType();
             //}
+            if (Session["userId"]!=null)
+            {
+                ViewBag.user = Models.UserService.GetUserByID(Convert.ToInt32(Session["userId"]));
+            }
+            else
+            {
+                string log = Request.Params["user_log"];
+                string pass = Request.Params["user_pass"];
+                if (log != null && pass != null)
+                {
+                    Models.User user = Models.UserService.GetUserByLogPas(log, pass);
+                    if (user != null)
+                    {
+                        ViewBag.User = user;
+                        Session["userId"] = user.Id;
+                        Session["userDtLife"] = DateTime.Now;
+
+                    }
+                }
+            }
+           
             return View();
         }
 

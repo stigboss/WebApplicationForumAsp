@@ -2,26 +2,37 @@
 @{
     ViewBag.Title = "User";
 }
+@if (ViewBag.User == null)
+{
+    <h2>Users</h2>
 
-<h2>Users</h2>
-
-<ul>
-    @foreach(var u in ViewBag.users)
-    {
-        <li>
-            <h3>@u.RealName 
-                <span style="color:red">@u.Nickname</span> 
+    <ul>
+        @foreach (var u in ViewBag.users)
+        {
+            <li>
+                <h3>
+                    @u.RealName
+                <span style="color:red">@u.Nickname</span>
                 <span style="color:lightgray">@u.RegisterDate</span>
-            </h3> 
+            </h3>
         </li>
-    }
-</ul>
-<form method="POST" action="~/User/Add">
-    <span class="forminput">Nickname: </span><input type="text" name="Nickname" /><br />
-    <span class="forminput">RealName: </span><input type="text" name="RealName" required /><br />
-    <span class="forminput">Password: </span><input type="password" name="PassHash" required /><br />
-    <span class="forminput">Confirm Password: </span><input type="password" name="RePassword" required /><br />
-    <input type="submit" value="Check&Send" id="sendUserForm"/>
-</form>
+        }
+    </ul>
+    <form method="POST" action="~/User/Add">
+        <span class="forminput">Nickname: </span><input type="text" name="Nickname" /><br />
+        <span class="forminput">RealName: </span><input type="text" name="RealName" required /><br />
+        <span class="forminput">Password: </span><input type="password" name="PassHash" required /><br />
+        <span class="forminput">Confirm Password: </span><input type="password" name="RePassword" required /><br />
+        <input type="submit" value="Check&Send" id="sendUserForm" />
+    </form>
+}
+else
+{
+    <h2>@ViewBag.User.Nickname</h2>
+    <h3>@ViewBag.User.RealName</h3>
+    <h3>@ViewBag.User.LastLogin</h3>
+    <h3>@ViewBag.User.RegisterDate</h3>
+}
+
 
 @Scripts.Render("~/bundles/valScript")
